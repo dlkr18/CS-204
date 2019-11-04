@@ -32,7 +32,8 @@ void Hash::Search(int key){
             if (*i == key)
             break;}
       if (i != table[index].end())
-      cout << key << " found\n";
+       cout << key << " found\n";
+      else cout << key << " not found\n";
     }
 
 void Hash::insertItem(int key)
@@ -79,6 +80,6 @@ int main()
   h.deleteItem(43);
   h.displayHash();
   h.Search(76);
-
+  h.search(46);
   return 0;
 }

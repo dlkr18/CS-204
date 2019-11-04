@@ -80,6 +80,6 @@ int main()
   h.deleteItem(43);
   h.displayHash();
   h.Search(76);
-  h.search(46);
+  h.Search(46);
   return 0;
 }

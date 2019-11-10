@@ -61,22 +61,28 @@ class BST
 
     node* singleRightRotate(node* &t)
     {
+        if (t->left != NULL){
         node* u = t->left;
         t->left = u->right;
         u->right = t;
         t->height = max(height(t->left), height(t->right))+1;
         u->height = max(height(u->left), t->height)+1;
         return u;
+        }
+        return t;
     }
 
     node* singleLeftRotate(node* &t)
     {
+        if (t->right != NULL){
         node* u = t->right;
         t->right = u->left;
         u->left = t;
         t->height = max(height(t->left), height(t->right))+1;
         u->height = max(height(t->right), t->height)+1 ;
         return u;
+         }
+        return t;
     }
 
     node* doubleLeftRotate(node* &t)

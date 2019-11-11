@@ -24,10 +24,11 @@ treapnode *lrot(treapnode *x){
 }
 
 treapnode *newnode(int key){
-    treapnode *temp=new(treapnode);
+    treapnode *temp=new treapnode;
     temp->key=key;
     temp->prio=rand()%100;
-    temp->left=temp->right=NULL;
+    temp->left=NULL;
+	temp->right=NULL;
     return temp;
 }
 
@@ -41,27 +42,30 @@ treapnode *Search(treapnode *root,int key){
 }
 
 treapnode *Insert(treapnode *root,int key){
-        if(!root) return newnode(key);
-
+        if(!root) root= newnode(key);
+     else{
         if(key<=root->key){
             root->left=Insert(root->left,key);
 
-            if(root->left->prio>root->prio)
+            if(root->left->prio > root->prio)
                 root=rrot(root);
         }
         else{
             root->right=Insert(root->right,key);
-            if(root->right->prio>root->prio)
+            if(root->right->prio > root->prio)
                 root=lrot(root);
         }
+     }
+return root;
+} 
 
 
-treapnode *Delete(treapnode* root,int key){
+treapnode *Delete(treapnode *root,int key){
     if(root==NULL)return root;
-
-    if(key <root->key)
+    
+    if(key < root->key)
         root->left=Delete(root->left,key);
-    else if(key >root->key)
+    else if(key > root->key)
         root->right=Delete(root->right,key);
     else if(root->left==NULL){
         treapnode *temp=root->right;
@@ -87,24 +91,24 @@ treapnode *Delete(treapnode* root,int key){
 void inorder(treapnode *root){
     if(root){
         inorder(root->left);
-        cout << "key " << root->key << "priority " << root->prio;
+        cout << "key " << root->key << " priority " << root->prio;
         if(root->left)
-            cout << "left child " << root->left->key;
+            cout << " left child " << root->left->key;
         if(root->right)
-            cout << "right child" << root->right->key;
+            cout << " right child " << root->right->key;
         cout << '\n';
         inorder(root->right);
     }
 
 }
 
-int main{
+int main(){
     srand(time(NULL));
 
     treapnode *root=NULL;
     root=Insert(root,38);
     root=Insert(root,45);
-    root=Insert(root.98);
+    root=Insert(root,98);
     root=Insert(root,21);
     root=Insert(root,50);
     root=Insert(root,75);
@@ -119,7 +123,7 @@ int main{
     inorder(root);
 
     treapnode *ser =Search(root,50);
-    (ser==NULL) ? cout << "\n 50 not found\n" : cout << "\n 50 found\n";
+    (ser==NULL) ? cout << "\n50 not found\n" : cout << "\n50 found\n";
 
 return 0;
 }

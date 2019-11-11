@@ -150,7 +150,7 @@ class BST
 
         t->height = max(height(t->left), height(t->right))+1;
 
-        if(height(t->left) - height(t->right) == -2)
+        if(height(t->left) - height(t->right) == 2)
         {
             
             if(height(t->right->right) - height(t->right->left) == 1)
